@@ -25,7 +25,7 @@ int32_t main(){
     smap[90] = make_pair(1, 0);
     smap[180] = make_pair(0, -1);
     smap[270] = make_pair(-1, 0);
-
+    
     int t;
     cin>>t;
     int cas = 1;
@@ -38,11 +38,15 @@ int32_t main(){
         
         visit[x][y]++;
         int deg = 0;
+        int sum = 0;
+
         for(int i = 0; i<str.size(); i++){
             if(str[i] == 'F'){
                 x += smap[deg].first;
                 y += smap[deg].second;
                 visit[x][y]++;
+                if(visit[x][y] == 2)
+                    sum++;
             }
             else if(str[i] == 'L'){
                 deg -= 90;
@@ -54,13 +58,7 @@ int32_t main(){
             }
         }
         
-        int sum = 0;
-        for(int i = 65; i>=0; i--){
-            for(int j = 0; j<=65; j++){
-                if(visit[i][j] > 1)
-                    sum++;
-            }
-        }
+        
         printf("Case #%d: %d %d %d\n", cas++,x,y,sum);
         
     }
