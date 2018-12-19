@@ -1,11 +1,13 @@
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
+
 int const N = 32;
 int caseno = 0;
 pair<int,int> dp[N][N];
 int visit[N][N];
 string str1,str2;
+
 pair<int,int> fun(int a, int b){
     if(str1.size() == a && str2.size() == b)
         return make_pair(0,1);
