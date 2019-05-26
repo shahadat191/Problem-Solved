@@ -1,0 +1,53 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int cas = 1;
+pair<int,int> ar[N];
+int dp[N];
+int cnt[N];
+
+void solve(){
+    int n, m;
+    scanf("%d %d", &n, &m);
+    for(int i = 1; i <= n; i++){
+        scanf("%d", &ar[i].first);
+    }
+    for(int i = 1; i <= n; i++){
+        scanf("%d", &ar[i].second);
+    }
+
+    dp[0] = 1;
+    for(int j = 1; j <= n; j++){
+        ms(cnt, 0);
+        cnt[0] = ar[j].second;
+        for(int i = 1; i <= m; i++){
+            if(dp[i]) {
+                cnt[i] = ar[j].second;
+                continue;
+            }
+            if(i >= ar[j].first && cnt[i - ar[j].first] > 0){
+                dp[i] = 1;
+                cnt[i] = cnt[i - ar[j].first] - 1;
+            }
+        }
+    }
+    int ret = 0;
+    for(int i = 1; i <= m; i++)
+        if(dp[i]) ret++;
+    printf("Case %d: %d\n", cas++, ret);
+}
+
+int32_t main(){
+    //ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+    input;
+    int t;
+    scanf("%d", &t);
+    while (t--) {
+        ms(dp, 0);
+        solve();
+    }
+    
+   
+    
+}
